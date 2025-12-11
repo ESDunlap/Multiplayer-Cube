@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     public Player photonPlayer;
 
     public Rigidbody rb;
+    public Camera cam;
     public float forwardForce = 2000f;
     public float sidewaysForce = 500f;
 
@@ -21,6 +22,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             FindAnyObjectByType<Score>().player = this.transform;
         if (photonView.IsMine)
             FindAnyObjectByType<reverseAttack>().setStatic(this.transform);
+        if (!photonView.IsMine)
+            cam.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
@@ -38,6 +41,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         if (rb.position.y < -1 || rb.position.y > 2)
         {
             FindObjectOfType<GameManager>().EndGame();
+
         }
     }
 

@@ -25,10 +25,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         // instance
         instance = this;
-        foreach (Player player in PhotonNetwork.PlayerList)
-        {
-            curPlayers++;
-        }
     }
 
     public void CompleteLevel()
@@ -41,7 +37,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void EndGame()
     {
         collidedPlayers++;
-        if (gameHasEnded == false && collidedPlayers==curPlayers)
+        if (gameHasEnded == false && collidedPlayers== PhotonNetwork.PlayerList.Length)
         {
             gameHasEnded = true;
             Debug.Log("Game Over");
@@ -49,9 +45,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    [PunRPC]
     void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void Start()
@@ -66,7 +63,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         playersInGame++;
         if (playersInGame == PhotonNetwork.PlayerList.Length)
         {
-            Invoke("SpawnPlayer",(PhotonNetwork.LocalPlayer.ActorNumber-1000)*10000000000);
+            Invoke("SpawnPlayer", (PhotonNetwork.LocalPlayer.ActorNumber-1) * 1.0f);
         }
 
     }

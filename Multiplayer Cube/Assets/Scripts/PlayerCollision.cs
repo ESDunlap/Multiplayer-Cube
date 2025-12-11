@@ -1,5 +1,6 @@
-using UnityEngine;
 using Photon.Pun;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class PlayerCollision : MonoBehaviourPunCallbacks
 {
@@ -11,13 +12,7 @@ public class PlayerCollision : MonoBehaviourPunCallbacks
         {
             movement.enabled = false;
             FindObjectOfType<GameManager>().EndGame();
+            Destroy(collisionInfo.gameObject);
         }
-        photonView.RPC("destroyItem", RpcTarget.Others, collisionInfo);
-    }
-
-    void destroyItem(Collision collisionCause)
-    {
-        PhotonNetwork.Destroy(collisionCause.gameObject);
-        PhotonNetwork.Destroy(this.gameObject);
     }
 }

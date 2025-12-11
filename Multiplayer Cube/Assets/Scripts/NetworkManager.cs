@@ -10,6 +10,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             gameObject.SetActive(false);
         else
         {
+            gameObject.transform.parent = null;
             instance = this;
             DontDestroyOnLoad(gameObject);
         }

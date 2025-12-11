@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   rb: {fileID: 3482246122283198794}
+  cam: {fileID: 5311815091077725977}
   forwardForce: 8000
   sidewaysForce: 120
 --- !u!114 &8635296108876884486
@@ -271,6 +272,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d76081e1f2d5064ab2462775a7e42fa, type: 3}
+--- !u!20 &5311815091077725977 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2028916048439661295, guid: 2d76081e1f2d5064ab2462775a7e42fa, type: 3}
+  m_PrefabInstance: {fileID: 6169777333900865014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7272450837052895601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3563363574228016263, guid: 2d76081e1f2d5064ab2462775a7e42fa, type: 3}
