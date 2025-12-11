@@ -52,6 +52,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         id = player.ActorNumber;
         GameManager.instance.players[id - 1] = this;
         if (!photonView.IsMine)
-            rb.isKinematic = true;
+            rb.isKinematic = false;
     }
 }
