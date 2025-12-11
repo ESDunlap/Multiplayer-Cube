@@ -8,13 +8,6 @@ public class FollowPlayer : MonoBehaviour
     public bool reverse = false;
     void Update()
     {
-        if (Input.GetKeyDown("q"))
-        {
-            transform.Rotate(0.0f, 180.0f, 0.0f);
-            reverse= !reverse;
-            FindObjectOfType<PlayerMovement>().sidewaysForce = -FindObjectOfType<PlayerMovement>().sidewaysForce;
-        }
-
         if (reverse)
         {
             transform.position = player.position + reverseOffset;
@@ -22,6 +15,7 @@ public class FollowPlayer : MonoBehaviour
         else
         {
             transform.position = player.position + offset;
+            transform.rotation = Quaternion.identity;
         }
     }
 }

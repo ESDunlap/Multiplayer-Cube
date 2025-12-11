@@ -1,12 +1,27 @@
+using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviourPunCallbacks
 {
+    [HideInInspector]
+    public int id;
+    [Header("Components")]
+    public Player photonPlayer;
+
     public Rigidbody rb;
     public float forwardForce = 2000f;
     public float sidewaysForce = 500f;
+
+    private void Awake()
+    {
+        if (photonView.IsMine)
+            FindAnyObjectByType<Score>().player = this.transform;
+        if (photonView.IsMine)
+            FindAnyObjectByType<reverseAttack>().setStatic(this.transform);
+    }
 
     void FixedUpdate()
     {
@@ -24,5 +39,15 @@ public class PlayerMovement : MonoBehaviour
         {
             FindObjectOfType<GameManager>().EndGame();
         }
+    }
+
+    [PunRPC]
+    public void Initialize(Player player)
+    {
+        photonPlayer = player;
+        id = player.ActorNumber;
+        GameManager.instance.players[id - 1] = this;
+        if (!photonView.IsMine)
+            rb.isKinematic = true;
     }
 }

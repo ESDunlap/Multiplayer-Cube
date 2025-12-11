@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class reverseAttack : MonoBehaviour
 {
-    public Transform player;
+    public static Transform player;
     public float distanceActivation;
     public float reverseSpeed = 5000f;
     public Rigidbody rb;
@@ -22,5 +22,10 @@ public class reverseAttack : MonoBehaviour
         {
             rb.AddForce(0, 0, reverseSpeed * Time.deltaTime);
         }
+    }
+
+    public void setStatic(Transform t)
+    {
+        player= t;
     }
 }

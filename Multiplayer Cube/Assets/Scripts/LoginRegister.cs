@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class LoginRegister : MonoBehaviour
 {
@@ -52,6 +54,7 @@ public class LoginRegister : MonoBehaviour
                 playFabId = result.PlayFabId;
                 if (onLoggedIn != null)
                     onLoggedIn.Invoke();
+                PhotonNetwork.NickName = usernameInput.text;
             },
             error => SetDisplayText(error.ErrorMessage, Color.green)
             );

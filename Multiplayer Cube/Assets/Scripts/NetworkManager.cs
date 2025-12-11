@@ -1,7 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 
-public class NetworkManager : MonoBehaviour
+public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public static NetworkManager instance;
     private void Awake()
@@ -28,4 +28,15 @@ public class NetworkManager : MonoBehaviour
     {
         PhotonNetwork.JoinRoom(roomName);
     }
+
+    [PunRPC]
+    public void ChangeScene(string sceneName)
+    {
+        PhotonNetwork.LoadLevel(sceneName);
+    }
+    public override void OnCreatedRoom()
+    {
+        Debug.Log("Created room: " + PhotonNetwork.CurrentRoom.Name);
+    }
+
 }
