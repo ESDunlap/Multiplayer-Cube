@@ -1,3 +1,3 @@
-# Memory Cube
+# Multiplayer Memory Cube
  
-Alternate Cubethon https://esdunlap.github.io/Memory-Cube/
+Alternate Cubethon https: [https://esdunlap.github.io/Multiplayer-Cube/](https://esdunlap.github.io/Multiplayer-Cube/)
